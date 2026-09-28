@@ -12,8 +12,6 @@ import atexit
 import random
 import traceback
 
-from tqdm import tqdm
-
 from . import transform
 from .worker import create_worker
 
