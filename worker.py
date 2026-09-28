@@ -13,7 +13,7 @@ import urllib3
 import ssl
 from urllib3.util import Retry
 
-import cafs
+from . import cafs
 from . import datumizer
 from . import transform
 from .callbus import CallBusClient
