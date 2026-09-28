@@ -4,3 +4,6 @@
 [submodule "transform/alonzo"]
 	path = transform/alonzo
 	url = git@github.com:4d30/alonzo.git
+[submodule "cafs"]
+	path = cafs
+	url = git@github.com:4d30/cafs.git
