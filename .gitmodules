@@ -1,3 +1,6 @@
 [submodule "callbus"]
 	path = callbus
 	url = git@github.com:4d30/callbus.git
+[submodule "transform/alonzo"]
+	path = transform/alonzo
+	url = git@github.com:4d30/alonzo.git
