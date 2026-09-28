@@ -112,11 +112,11 @@ def base_salary(posting_record):
     return common.empty_salary(posting_record)
 
 
-def _conform_country(location_machine_record):
-    return {
-        k: common.convert_to_ISO3166(v) if 'Country' in k else v
-        for k, v in location_machine_record.items()
-    }
+#def _conform_country(location_machine_record):
+#    return {
+#        k: common.convert_to_ISO3166(v) if 'Country' in k else v
+#        for k, v in location_machine_record.items()
+#    }
 
 
 def job_location(posting_record):
