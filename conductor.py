@@ -19,6 +19,7 @@ _worker = None
 
 SOCK_PATH = os.getenv('CALLBUS_SOCK')
 ATS_ROOT = os.getenv('ATS_ROOT')
+EXCEPTION_LOG = os.path.join(os.getenv('DATA_ROOT'), 'logs/ingestion_exceptions.log')
 
 
 def load_urls(adapter_name):
@@ -75,7 +76,7 @@ def run_task(task_data):
         _worker.process(adapter_name, url, etag)
         return 0
     except Exception:
-        with open("exceptions.log", "a") as handle:
+        with open(EXCEPTION_LOG, "a") as handle:
             handle.write(traceback.format_exc())
             handle.write("\n\n")
         return 1
@@ -90,7 +91,7 @@ def main():
         time.sleep(0.1)
     time.sleep(2)
     if etag_proc.poll() is not None:
-        with open("exceptions.log", "a") as f:
+        with open(EXCEPTION_LOG, "a") as f:
             f.write("etag_service exited early\n")
         sys.exit(1)
     try:
@@ -99,7 +100,7 @@ def main():
             results = executor.map(run_task, data, chunksize=36)
             errors = sum(results) > 0
     except Exception:
-        with open("exceptions.log", "a") as f:
+        with open(EXCEPTION_LOG, "a") as f:
             f.write(traceback.format_exc())
         errors = True
     finally:

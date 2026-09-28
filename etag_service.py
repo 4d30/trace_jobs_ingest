@@ -10,6 +10,7 @@ from . import transform
 from . import callbus
 
 ATS_ROOT = os.getenv('ATS_ROOT')
+EXCEPTION_LOG = os.path.join(os.getenv('DATA_ROOT'), 'logs/ingestion_exceptions.log')
 
 def get_stores():
     modules = transform.get_adapters()
@@ -61,7 +62,7 @@ def main():
             socket_path = os.getenv('CALLBUS_SOCK')
         callbus.run(socket_path, handlers)
     except Exception:
-        with open("exceptions.log", "a") as handle:
+        with open(EXCEPTION_LOG, "a") as handle:
             handle.write(traceback.format_exc())
             handle.write("\n\n")
         sys.exit(1)

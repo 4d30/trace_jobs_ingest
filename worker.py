@@ -18,6 +18,8 @@ from . import datumizer
 from . import transform
 from .callbus import CallBusClient
 
+EXCEPTION_LOG = os.path.join(os.getenv('DATA_ROOT'), 'logs/ingestion_exceptions.log')
+
 
 RETRY = Retry(total=5,
  backoff_factor=4.0,
@@ -105,7 +107,7 @@ class Worker:
             provenance = datumizer.formalize(content_hash, adapter_name, record, url)
             self.prov_logger.info(provenance)
         except Exception:
-            with open("exceptions.log", "a") as f:
+            with open(EXCEPTION_LOG, "a") as f:
                 print(adapter_name, file=f)
                 print(url, file=f)
                 print(record, file=f)
