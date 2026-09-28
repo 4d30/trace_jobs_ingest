@@ -87,7 +87,7 @@ def main():
     import sys
     errors = False
     data = url_generator()
-    etag_proc = subprocess.Popen([sys.executable, '-m', 'ingest.etag_service', SOCK_PATH])
+    etag_proc = subprocess.Popen([sys.executable, '-m', 'trace_jobs_ingest.etag_service', SOCK_PATH])
     while not os.path.exists(SOCK_PATH):
         time.sleep(0.1)
     time.sleep(2)
