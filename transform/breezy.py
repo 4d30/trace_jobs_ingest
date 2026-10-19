@@ -140,10 +140,14 @@ def _extract_interval(salary_field):
                      lambda x: 'PT1H',
                      sequential((lambda x: x,
                                  is_weekly),))
+    is_horaly = branch(partial(_a_in_b, '/ por hora'),
+                     lambda x: 'PT1H',
+                     sequential((lambda x: x,
+                                 is_hrly),))
     is_hourly = branch(partial(_a_in_b, '/ hour'),
                        lambda x: 'PT1H',
                        sequential((lambda x: x,
-                                   is_hrly),))
+                                   is_horaly),))
 
     is_daily = branch(partial(_a_in_b, '/ day'),
                       lambda x: 'P1D',
