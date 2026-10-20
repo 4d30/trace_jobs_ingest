@@ -5,6 +5,7 @@ import sys
 import dbm.gnu as gdbm
 from operator import itemgetter
 from itertools import repeat
+import traceback
 
 from . import transform
 from . import callbus
