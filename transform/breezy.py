@@ -132,10 +132,14 @@ def _extract_interval(salary_field):
                      lambda x: 'P1M',
                      sequential((lambda x: x,
                                  is_annual),))
+    is_biweely = branch(partial(_a_in_b, '/ biweely'),
+                     lambda x: 'P2W',
+                     sequential((lambda x: x,
+                                 is_monthly),))
     is_weekly = branch(partial(_a_in_b, '/ week'),
                      lambda x: 'P1W',
                      sequential((lambda x: x,
-                                 is_monthly),))
+                                 is_biweely),))
     is_hrly = branch(partial(_a_in_b, '/ hr'),
                      lambda x: 'PT1H',
                      sequential((lambda x: x,
